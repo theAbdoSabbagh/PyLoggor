@@ -87,8 +87,8 @@ class PyLoggor:
 			level_colour = "[bold white]"
 
 		if self.file:
-			if level in self.allowed_levels[self.file_output_level]:
+			if level not in self.level_colours.keys() or level in self.allowed_levels[self.file_output_level]:
 				self.file.write(f"{time_str} | {topic} | {msg}")
 		if self.console_output:
-			if level in self.allowed_levels[self.console_output_level]:
+			if level not in self.level_colours.keys() or level in self.allowed_levels[self.console_output_level]:
 				print(f"{level_colour}[*]{msg}[/]")
