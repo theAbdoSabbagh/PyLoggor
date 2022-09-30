@@ -13,7 +13,7 @@ class FileHandler:
 				f.write(f"{msg}\n")
 
 
-class Loggor:
+class PyLoggor:
 	def __init__(
 		self,
 		*,
