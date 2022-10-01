@@ -9,5 +9,7 @@ setup(
     url='https://www.github.com/PrivatePandaCO/PyLoggor',
     license='MIT',
     packages=['PyLoggor'],
-    install_requires=['rich']
+    install_requires=['rich'],
+    long_description=open('README.md').read(),
+    long_description_content_type='text/markdown'
 )
