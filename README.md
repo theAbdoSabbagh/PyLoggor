@@ -1,24 +1,24 @@
----
-title: 'Project documentation'
-disqus: PyLoggor
----
+The easiest and perhaps the most versatile logger for python, in hundred lines.
 
 ## Table of Contents
+- [Installation](#Installation)
+- [Usage](#Usage)
+- [Config](#Config)
+- [Appendix](#Appendix)
+- [About the Author](#About-the-author)
 
-[TOC]
-
-Installation
+### Installation
 ---
 1) Download the `.whl` or the `.tar.gz` file from [here](https://github.com/PrivatePandaCO/PyLoggor/dist)
 2) Install it as a package using pip: `pip install *.whl`
 
-Usage
+### Usage
 ---
 1) Once installed, you can access the logger class by importing it like so: `from PyLoggor import PyLoggor`
 2) Instantize the class using: `myLogger = PyLoggor()`
 3) Log something! `myLogger.log(level="ERROR", msg="JSON config is corrupt.")`
 
-Config
+### Config
 ---
 <details>
 	<summary> Standard </summary>
@@ -110,8 +110,11 @@ logger.log(level="custom", msg="This is custom", topic="customized", file="test/
 
 ![output](Assets/output.png)
 
-Appendix and FAQ
+### Appendix
 ---
-:::info
 **Find this incomplete?** Create an [issue](https://github.com/PrivatePandaCO/PyLoggor/issues)!
-:::
+
+
+### About the author
+---
+Just check mi [main profile](https://github.com/ThePrivatePanda) and my site ye, leave a star if ye liked this!
