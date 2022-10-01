@@ -9,8 +9,7 @@ The easiest and perhaps the most versatile logger for python, in hundred lines.
 
 ### Installation
 ---
-1) Download the `.whl` or the `.tar.gz` file from [here](https://github.com/PrivatePandaCO/PyLoggor/dist)
-2) Install it as a package using pip: `pip install *.whl`
+As simple as `pip install PyLoggor`!
 
 ### Usage
 ---
