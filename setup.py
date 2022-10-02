@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='PyLoggor',
-    version='1.1.1',
+    version='1.1.2',
     description='An incredibly versatile yet simple logging system.',
     author='Parth Mittal',
     author_email='parth@thekoalaco.in',

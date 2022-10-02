@@ -5,7 +5,6 @@ The easiest and perhaps the most versatile logger for python, in hundred lines.
 - [Usage](#Usage)
 - [Config](#Config)
 - [Appendix](#Appendix)
-- [About the Author](#About-the-author)
 
 ### Installation
 ---
@@ -107,13 +106,9 @@ logger.log(level="custom", msg="This is custom", topic="customized", file="test/
 ```
 </details>
 
-![output](Assets/output.png)
+![output](https://github.com/PrivatePandaCO/PyLoggor/blob/master/Assets/output.png)
 
 ### Appendix
 ---
 **Find this incomplete?** Create an [issue](https://github.com/PrivatePandaCO/PyLoggor/issues)!
-
-
-### About the author
----
-Just check mi [main profile](https://github.com/ThePrivatePanda) and my site ye, leave a star if ye liked this!
+Just check mi [main profile](https://github.com/ThePrivatePanda) and my site, leave a star if ye liked this!

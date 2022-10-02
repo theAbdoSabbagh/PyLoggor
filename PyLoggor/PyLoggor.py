@@ -19,8 +19,8 @@ class PyLoggor:
 		*,
 		file_output_level: Literal["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"] = "DEBUG",
 		console_output_level: Literal["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"] = "DEBUG",
-		topic_beauty_space: int = 30,
-		file_beauty_space: int = 30,
+		topic_beauty_space: int = 15,
+		file_beauty_space: int = 15,
 		level_beauty_space: int = 10,
 		fn=False,
 		console_output=True,
@@ -28,7 +28,7 @@ class PyLoggor:
 			"DEBUG": "[bold blue]",
 			"INFO": "[bold green]",
 			"WARNING": "[bold yellow]",
-			"ERROR": "[bold red]",
+			"ERROR": "[red]",
 			"CRITICAL": "[bold red]"
 		},
 		delim="|",
@@ -48,19 +48,19 @@ class PyLoggor:
 		self.level_beauty_space = level_beauty_space
 		self.file = FileHandler(fn) if fn else False
 		self.console_output = console_output
-
-		self.allowed_levels = {
-			"DEBUG": ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"],
-			"INFO": ["INFO", "WARNING", "ERROR", "CRITICAL"],
-			"WARNING": ["WARNING", "ERROR", "CRITICAL"],
-			"ERROR": ["ERROR", "CRITICAL"],
-			"CRITICAL": ["CRITICAL"]
-		}
 		self.level_symbols = level_symbols
 
 		self.level_colours = level_colours
 		self.delim = delim
 		self.datefmt = datefmt
+
+		self.default_levels = {
+			"DEBUG": 0,
+			"INFO": 1,
+			"WARNING": 2,
+			"ERROR": 3,
+			"CRITICAL": 4,
+		}
 
 	def extras_builder(self, extras):
 		h = []
@@ -72,11 +72,11 @@ class PyLoggor:
 		return _str.ljust(space)
 
 	def log(self, *,
-		level: str,
+		level: str = "DEBUG",
 		extras: Optional[list] = None,
 		topic="None",
 		file="NoFile",
-		msg
+		msg="NoMessage", # I don't know why people do this
 	):
 		level = level.upper()
 		time_str = datetime.now().strftime(self.datefmt)
@@ -103,8 +103,8 @@ class PyLoggor:
 			level_colour = "[bold white]"
 
 		if self.file:
-			if level not in self.allowed_levels.keys() or level in self.allowed_levels[self.file_output_level]:
+			if level not in self.default_levels.keys() or self.default_levels[level] >= self.default_levels[self.file_output_level]:
 				self.file.write(msg)
 		if self.console_output:
-			if level not in self.allowed_levels.keys() or level in self.allowed_levels[self.console_output_level]:
+			if level not in self.default_levels.keys() or self.default_levels[level] >= self.default_levels[self.console_output_level]:
 				print(f"{level_colour}{msg}[/]")
