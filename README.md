@@ -29,6 +29,11 @@ As simple as `pip install PyLoggor`!
 	- The default level hierarchy is: `DEBUG` -> `INFO` -> `WARNING` -> `ERROR` -> `CRITICAL`.
 		- This means that if the level is `WARNING`, it will log all WARNINGs, ERRORs, and CRITICALs but not DEBUG and INFO messages.
 	- You can pass in a custom level as well, which will not effect the level hierarchy and always print as well as log to file.
+
+3. Colouring.
+	- While passing in default or level_colours config, please pass it in the form of `level_colours={"LEVEL": "[VALID_COLOUR]"}`
+	- Here, `VALID_COLOUR` can be any of colours listed [here](https://rich.readthedocs.io/en/stable/appendix/colors.html), additionaly, you can prefix them with `bold ` to make them bold.
+
 </details>
 <details>
 	<summary> Initialization </summary>
