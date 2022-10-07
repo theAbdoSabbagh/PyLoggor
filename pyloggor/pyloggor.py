@@ -15,7 +15,7 @@ class FileHandler:
 				f.write(f"{msg}\n")
 
 
-class lazylogger:
+class pyloggor:
 	default_level_colours = {
 		"DEBUG": "[bold blue]",
 		"INFO": "[bold green]",
