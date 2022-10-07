@@ -8,12 +8,12 @@ The easiest and perhaps the most versatile logger for python, in hundred lines.
 
 ### Installation
 ---
-As simple as `pip install ezlogging`!
+As simple as `pip install lazylogging`!
 
 ### Usage
 ---
-1) Once installed, you can access the logger class by importing it like so: `from ezlogging import ezlogging`
-2) Instantize the class using: `myLogger = ezlogging()`
+1) Once installed, you can access the logger class by importing it like so: `from lazylogging import lazylogging`
+2) Instantize the class using: `myLogger = lazylogging()`
 3) Log something! `myLogger.log(level="ERROR", msg="JSON config is corrupt.")`
 
 ### Config
@@ -40,7 +40,7 @@ As simple as `pip install ezlogging`!
 
 1) `file_output_level`, `console_output_level`:
 	Different levels for file and console output!
-	- `ezlogging(file_output_level="DEBUG", console_output_level="ERROR")`
+	- `lazylogging(file_output_level="DEBUG", console_output_level="ERROR")`
 	- This will write ALL logs to file but only print ERRORs and CRITICALs to the console.
 	- Both default to `DEBUG`.
 
@@ -113,9 +113,9 @@ As simple as `pip install ezlogging`!
 	- You an pass in `file_output_level` and `console_output_level`, both of which default to logger default if not passed.
 
 ```python
-from ezlogging import ezlogging
+from lazylogging import lazylogging
 
-logger = ezlogging(fn="log.txt")
+logger = lazylogging(fn="log.txt")
 
 logger.log(level="debug", msg="DEBUG", topic="Internal", file="utils/internal.py")
 logger.log(level="info", msg="This is an info message", topic="Info", file="info.py", file_output=False)
@@ -126,9 +126,9 @@ logger.log(level="custom", msg="This is custom", topic="customized", file="test/
 ```
 </details>
 
-![output](https://github.com/PrivatePandaCO/ezlogging/blob/master/Assets/output.png)
+![output](https://github.com/PrivatePandaCO/lazylogging/blob/master/Assets/output.png)
 
 ### Appendix
 ---
-**Find this incomplete?** Create an [issue](https://github.com/PrivatePandaCO/ezlogging/issues)!
+**Find this incomplete?** Create an [issue](https://github.com/PrivatePandaCO/lazylogging/issues)!
 Just check mi [main profile](https://github.com/ThePrivatePanda) and my site, leave a star if ye liked this!
