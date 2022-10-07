@@ -15,7 +15,7 @@ class FileHandler:
 				f.write(f"{msg}\n")
 
 
-class PyLoggor:
+class ezlogging:
 	default_level_colours = {
 		"DEBUG": "[bold blue]",
 		"INFO": "[bold green]",
@@ -93,8 +93,8 @@ class PyLoggor:
 		file="NoFile",
 		msg="NoMessage", # I don't know why people do this
 		extras: Optional[dict] = None,
-		console_output: bool = True,
-		file_output: bool = False,
+		console_output: bool = None,
+		file_output: bool = None,
 	):
 		level = level.upper()
 		time_str = datetime.now().strftime(self.datefmt)
@@ -113,20 +113,37 @@ class PyLoggor:
 		else:
 			level_symbol = "*"
 
-		msg = f"[{level_symbol}] {time_str} {self.delim} {beautifed_level} {self.delim} {beautifed_file} {self.delim} {beautifed_topic} {self.delim} {msg}{extras_str}"
+		msg = f"[{level_symbol}] {time_str} {self.delim} {beautifed_level} {self.delim} {beautifed_file} {self.delim} {beautifed_topic} {self.delim} {msg} {extras_str}"
 
 		if level in self.level_colours.keys():
 			level_colour = self.level_colours[level]
 		else:
 			level_colour = self.default_colour
 
-		if self.console_output and console_output:
-			if level not in self.default_levels.keys() or self.default_levels[level] >= self.default_levels[self.console_output_level]:
-				print(f"{level_colour}{msg}[/]")
+		console_out = None
+		file_out = None
 
-		if self.file and file_output:
+		if console_output is True:
+			console_out = True
+		elif console_output is False:
+			console_out = False
+		elif console_output is None:
+			if level not in self.default_levels.keys() or self.default_levels[level] >= self.default_levels[self.console_output_level]:
+				console_out = True
+
+		if console_out:
+			print(f"{level_colour}{msg}[/]")
+
+		if file_output is True:
+			file_out = True
+		elif file_output is False:
+			file_out = False
+		elif file_output is None:
 			if level not in self.default_levels.keys() or self.default_levels[level] >= self.default_levels[self.file_output_level]:
-				self.file.write(msg)
+				file_out = True
+		
+		if file_out:
+			self.file.write(msg)
 	
 	def set_level(self, file_output_level=None, console_output_level=None) -> None:
 		if file_output_level:
