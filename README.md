@@ -54,6 +54,7 @@ As simple as `pip install pyloggor`!
 	
 4) `topic_adjustment_space`, `file_adjustment_space`, `level_adjustment_space`:
 	- The loggor automatically adds whitespace to the end of topics, file names and levels (passed during logging) to make the output appear more... beautiful, as seen below
+	- Input as 0 for no adjustment space
 
 5) `level_align`, `topic_align`, `file_align`:
 	- Can be one of `left`, `center`, `centre`, `right`, all default to `left`.

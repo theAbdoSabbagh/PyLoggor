@@ -1,6 +1,8 @@
 import os
 from datetime import datetime
-from typing import Literal, Optional
+from typing import Literal, Optional, TextIO, Union
+import json
+
 
 from rich import print
 
@@ -14,6 +16,19 @@ class FileHandler:
 		with open(self.fn, "a") as f:
 				f.write(f"{msg}\n")
 
+class Config:
+	def __init__(self, fn: str) -> None:
+		self.fn: str = fn
+		self.config: dict = json.load(open(fn))
+
+	def update(self, key: Union[dict, str], value: Union[dict, str, int, list]) -> None:
+		self.config[key] = value
+		json.dump(self.config, open(self.fn, "w"))
+
+	def get(self, key: Union[str, dict]) -> Union[dict, str, int, list]:
+		self.config: dict = json.load(open(self.fn))
+		return self.config[key]
+
 
 class pyloggor:
 	default_level_colours = {
@@ -23,9 +38,12 @@ class pyloggor:
 		"ERROR": "[red]",
 		"CRITICAL": "[bold red]"
 	}
+
 	def __init__(
 		self,
 		*,
+		config: Optional[TextIO] = None,
+		live_config: bool = True,
 		file_output_level: Literal["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"] = "DEBUG",
 		console_output_level: Literal["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"] = "DEBUG",
 		topic_adjustment_space: int = 15,
@@ -48,6 +66,8 @@ class pyloggor:
 			"CRITICAL": "C"
 		}
 	):
+		self.config = config
+		self.live_config = live_config
 		self.file_output_level = file_output_level
 		self.console_output_level = console_output_level
 		self.topic_adjustment_space = topic_adjustment_space
@@ -80,6 +100,9 @@ class pyloggor:
 		return f" {self.delim} ".join(h)
 
 	def beautify(self, _str, space, alignment):
+		space = space if space >= 0 else 0
+		if space == 0:
+			return _str + " "
 		if alignment == "left":
 			return _str.ljust(space)
 		elif alignment == "right":
@@ -87,7 +110,9 @@ class pyloggor:
 		elif alignment == "center" or alignment == "centre":
 			return _str.center(space)
 
-	def log(self, *,
+	def log(
+		self,
+		*,
 		level: str = "DEBUG",
 		topic="None",
 		file="NoFile",
@@ -141,10 +166,10 @@ class pyloggor:
 		elif file_output is None:
 			if level not in self.default_levels.keys() or self.default_levels[level] >= self.default_levels[self.file_output_level]:
 				file_out = True
-		
+
 		if file_out:
 			self.file.write(msg)
-	
+
 	def set_level(self, file_output_level=None, console_output_level=None) -> None:
 		if file_output_level:
 			self.file_output_level = file_output_level
