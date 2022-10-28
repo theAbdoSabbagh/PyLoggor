@@ -9,7 +9,7 @@ setup(
     url='https://www.github.com/PrivatePandaCO/pyloggor',
     license='MIT',
     packages=['pyloggor'],
-    install_requires=['rich'],
+    install_requires=['rich', 'typing-extensions'],
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     project_urls={
