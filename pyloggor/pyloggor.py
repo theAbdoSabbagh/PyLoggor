@@ -1,6 +1,7 @@
 import os
 from datetime import datetime
-from typing import Literal, Optional, TextIO, Union
+from typing import Optional, TextIO, Union
+from typing_extensions import Literal
 import json
 
 
